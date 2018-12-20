@@ -4,6 +4,7 @@ _start:
 
 xor ecx,ecx
 mul ecx
+xor ebx,ebx
 
 ;socket(AF_INET, SOCK_STREAM, 0)
 ; eax     ebx       ecx      edx
